@@ -19,25 +19,22 @@
 
 package org.elasticsearch.wares;
 
-import org.elasticsearch.common.logging.ESLogger;
-import org.elasticsearch.common.logging.Loggers;
-import org.elasticsearch.common.logging.log4j.LogConfigurator;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
-import org.elasticsearch.node.internal.InternalNode;
-import org.elasticsearch.rest.RestController;
-import org.elasticsearch.rest.RestRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.concurrent.CountDownLatch;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.concurrent.CountDownLatch;
+
+import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.node.Node;
+import org.elasticsearch.node.NodeBuilder;
+import org.elasticsearch.node.internal.InternalNode;
+import org.elasticsearch.rest.RestController;
+import org.elasticsearch.rest.RestRequest;
 
 /**
  * A servlet that can be used to dispatch requests to elasticsearch. A {@link Node} will be started, reading
@@ -51,7 +48,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class NodeServlet extends HttpServlet {
 
-    public static String NODE_KEY = "elasticsearchNode";
+	private static final long serialVersionUID = -8400258212829102951L;
+	public static String NODE_KEY = "elasticsearchNode";
     public static String NAME_PREFIX = "org.elasticsearch.";
 
     protected Node node;
@@ -70,9 +68,10 @@ public class NodeServlet extends HttpServlet {
             getServletContext().log("Initializing elasticsearch Node '" + getServletName() + "'");
             ImmutableSettings.Builder settings = ImmutableSettings.settingsBuilder();
     
-            InputStream resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/elasticsearch.json");
+            InputStream resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/config/elasticsearch.json");
             if (resourceAsStream != null) {
                 settings.loadFromStream("/WEB-INF/elasticsearch.json", resourceAsStream);
+                getServletContext().log("Settings loaded from elasticsearch.json");
                 try {
                     resourceAsStream.close();
                 } catch (IOException e) {
@@ -80,9 +79,10 @@ public class NodeServlet extends HttpServlet {
                 }
             }
     
-            resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/elasticsearch.yml");
+            resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/config/elasticsearch.yml");
             if (resourceAsStream != null) {
                 settings.loadFromStream("/WEB-INF/elasticsearch.yml", resourceAsStream);
+                getServletContext().log("Settings loaded from elasticsearch.yml");
                 try {
                     resourceAsStream.close();
                 } catch (IOException e) {
