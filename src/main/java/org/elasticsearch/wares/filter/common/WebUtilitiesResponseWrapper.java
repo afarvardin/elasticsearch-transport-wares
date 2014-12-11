@@ -19,6 +19,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -37,8 +38,8 @@ import static org.elasticsearch.wares.filter.common.Constants.HTTP_CONTENT_TYPE_
 public class WebUtilitiesResponseWrapper extends HttpServletResponseWrapper {
 
     private WebUtilitiesResponseOutputStream stream;
-    private Map<String, Object> headers = new HashMap();
-    private Set<Cookie> cookies = new HashSet();
+    private Map<String, Object> headers = new HashMap<String, Object>();
+    private Set<Cookie> cookies = new HashSet<Cookie>();
     private String contentType;
     private int status = 0;
     private boolean getWriterCalled = false;

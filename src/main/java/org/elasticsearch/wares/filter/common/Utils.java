@@ -19,6 +19,7 @@ import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.Loggers;
 
 import javax.servlet.ServletContext;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -266,7 +267,7 @@ public final class Utils {
 
         String[] resourcesPath = requestURI.split(",");
 
-        List<String> resources = new ArrayList();
+        List<String> resources = new ArrayList<String>();
 
         String currentPath = PATH_ROOT; //default
 

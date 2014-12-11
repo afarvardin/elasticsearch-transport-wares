@@ -19,13 +19,14 @@
 
 package org.elasticsearch.wares;
 
-import org.elasticsearch.rest.RestRequest;
+import java.io.IOException;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.elasticsearch.rest.RestRequest;
 
 /**
  * Same as {@link NodeServlet} just uses async features.
@@ -34,7 +35,9 @@ import java.io.IOException;
  */
 public class AsyncNodeServlet extends NodeServlet {
 
-    @Override
+	private static final long serialVersionUID = 4721700209854308039L;
+
+	@Override
     public void init() throws ServletException {
         super.init();
     }

@@ -21,6 +21,7 @@ package org.elasticsearch.wares.filter.compression;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -113,7 +114,7 @@ public final class CompressedHttpServletRequestWrapper extends HttpServletReques
             return null;
         }
 
-        Collection<String> headerNames = new ArrayList();
+        Collection<String> headerNames = new ArrayList<String>();
         while (originalHeaderNames.hasMoreElements()) {
             String headerName = originalHeaderNames.nextElement();
             if (!skippedHeader(headerName)) {

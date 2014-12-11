@@ -25,6 +25,7 @@ import org.elasticsearch.wares.filter.common.WebUtilitiesResponseWrapper;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -65,7 +66,7 @@ public class CompressedHttpServletResponseWrapper extends WebUtilitiesResponseWr
     private boolean noTransformSet;
     private int threshold = DEFAULT_COMPRESSION_SIZE_THRESHOLD;
 
-    private static final List<String> UNALLOWED_HEADERS = new ArrayList();
+    private static final List<String> UNALLOWED_HEADERS = new ArrayList<String>();
 
     static {
         UNALLOWED_HEADERS.add(HTTP_CONTENT_LENGTH_HEADER.toLowerCase());

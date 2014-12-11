@@ -120,6 +120,6 @@ public interface Constants {
     Pattern CSS_IMG_URL_PATTERN = Pattern.compile("[uU][rR][lL]\\s*\\(\\s*['\"]?([^('|\")]*)['\"]?\\s*\\)");
 
     //Map that holds Image path -> CSS files path that refers it
-    Map<String, List<String>> CSS_IMG_REFERENCES = new HashMap();
+    Map<String, List<String>> CSS_IMG_REFERENCES = new HashMap<String, List<String>>();
 
 }

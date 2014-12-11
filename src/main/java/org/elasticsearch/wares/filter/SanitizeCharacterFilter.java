@@ -35,7 +35,9 @@ public final class SanitizeCharacterFilter implements Filter {
      */
     private final static Map<Character, String> map = new HashMap<Character, String>() {
 
-        {
+		private static final long serialVersionUID = 7563919467116052695L;
+
+		{
             put('<', "%3C");
             put('>', "%3E");
             put('[', "%5B");
