@@ -1,53 +1,7 @@
-Servlet Transport for Elasticsearch
+Servlet example with Elasticsearch embedded in a WAR container
 ==================================
 
-The wares transport plugin allows to use the REST interface over servlets. You don't really install this plugin,
-but instead use the jar file in addition to elasticsearch itself in your web app using the maven repo:
-
-```xml
-<dependency>
-    <groupId>org.elasticsearch</groupId>
-    <artifactId>elasticsearch-transport-wares</artifactId>
-    <version>2.4.0-SNAPSHOT</version>
-</dependency>
-```
-
-* For master elasticsearch versions, look at [master branch](https://github.com/elasticsearch/elasticsearch-transport-wares/tree/master).
-* For 1.x.x elasticsearch versions, look at [es-1.x branch](https://github.com/elasticsearch/elasticsearch-transport-wares/tree/es-1.x).
-* For 1.3.x elasticsearch versions, look at [es-1.3 branch](https://github.com/elasticsearch/elasticsearch-transport-wares/tree/es-1.3).
-* For 1.2.x elasticsearch versions, look at [es-1.2 branch](https://github.com/elasticsearch/elasticsearch-transport-wares/tree/es-1.2).
-* For 0.90.x elasticsearch versions, look at [es-0.90 branch](https://github.com/elasticsearch/elasticsearch-transport-wares/tree/es-0.90).
-
-|   Wares Transport Plugin    | elasticsearch         | Release date |
-|-----------------------------|-----------------------|:------------:|
-| 2.4.0-SNAPSHOT              | 1.x                   |  XXXX-XX-XX  |
-
-Please read documentation relative to the version you are using:
-
-* [2.4.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-transport-wares/blob/es-1.x/README.md)
-
-Tomcat configuration (CORS filter)
-----------------------------------
-
-The [Tomcat configuration](http://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter) to allow CORS is:
-
-```xml
-<filter>
-  <filter-name>CorsFilter</filter-name>
-  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-</filter>
-<filter-mapping>
-  <filter-name>CorsFilter</filter-name>
-  <url-pattern>/*</url-pattern>
-</filter-mapping>
-```
-
-Node resource
--------------
-
-The node is registered as a servlet context attribute under `elasticsearchNode` so it is easily accessible from other web resources if needed.
-
-You can also preregister your own node using `elasticsearchNode` servlet context attribute. It will be used by the NodeServlet.
+The webapp starts an embedded elastic search instance in a web archive which can be deployed in an application server (tested with JBoss 7.2) using the [elasticsearch-transport-wares](https://github.com/elasticsearch/elasticsearch-transport-wares) and [a patch](https://github.com/elasticsearch/elasticsearch-transport-wares/pull/8) privided by @jprante.
 
 
 License
