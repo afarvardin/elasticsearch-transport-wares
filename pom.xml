@@ -33,8 +33,21 @@
     </parent>
 
     <properties>
-        <elasticsearch.version>1.4.0</elasticsearch.version>
-        <elasticsearch.version>1.4.0</elasticsearch.version>
+    	<!-- Dependencies -->
+        <elasticsearch.version>1.4.1</elasticsearch.version>
+        <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+        <log4j.version>1.2.16</log4j.version>
+        
+		<!-- Plugins -->
+		<maven.compiler.version>3.1</maven.compiler.version>
+		<maven.surefire.version>2.18</maven.surefire.version>
+		<maven-assembly.version>2.4</maven-assembly.version>
+		<maven.source.version>2.3</maven.source.version>
+		<maven.war.version>2.4</maven.war.version>
+		
+		<!-- Others properties -->
+		<java.version>1.7</java.version>
+		<encoding>UTF-8</encoding>
     </properties>
 
     <dependencies>
@@ -48,14 +61,14 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
+            <version>${javax.servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <version>${log4j.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -66,16 +79,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.11</version>
+				<version>${maven.surefire.version}</version>
                 <configuration>
                     <includes>
                         <include>**/*Tests.java</include>
@@ -85,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>${maven.source.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -97,7 +111,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.3</version>
+                <version>${maven-assembly.version}</version>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <outputDirectory>${project.build.directory}/releases/</outputDirectory>
@@ -117,6 +131,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.version}</version>
                 <configuration>
                     <warName>es</warName>
                     <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
