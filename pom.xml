@@ -7,10 +7,10 @@
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-transport-wares</artifactId>
     <version>2.4.2-SNAPSHOT</version>
-    <packaging>jar</packaging>
     <name>Elasticsearch Servlet Transport plugin</name>
     <description>The wares transport plugin allows to use the REST interface over servlets.</description>
     <url>https://github.com/elasticsearch/elasticsearch-transport-wares/</url>
+    <packaging>war</packaging>
     <inceptionYear>2009</inceptionYear>
     <licenses>
         <license>
@@ -102,6 +102,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <outputDirectory>${project.build.directory}/releases/</outputDirectory>
                     <descriptors>
+                        <descriptor>${basedir}/src/main/assemblies/jar.xml</descriptor>
                         <descriptor>${basedir}/src/main/assemblies/plugin.xml</descriptor>
                     </descriptors>
                 </configuration>
@@ -113,6 +114,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>es</warName>
+                    <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
+                    <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>
